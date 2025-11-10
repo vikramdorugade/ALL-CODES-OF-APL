@@ -1,0 +1,10 @@
+# fs-demo/index.js
+// Sync FS operations for quick demo: create, append, read, copy, rename, list
+const fs = require("fs");
+
+fs.writeFileSync("note.txt", "First line\n");
+fs.appendFileSync("note.txt", "Second line\n");
+console.log("READ:\n", fs.readFileSync("note.txt", "utf8"));
+fs.copyFileSync("note.txt", "note-copy.txt");
+fs.renameSync("note-copy.txt", "note-final.txt");
+console.log("Files:", fs.readdirSync("."));

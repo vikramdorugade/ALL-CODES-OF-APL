@@ -1,0 +1,16 @@
+# events/index.js
+// EventEmitter demo with on/once and custom events
+const { EventEmitter } = require("events");
+const bus = new EventEmitter();
+
+bus.on("tick", (n) => console.log("tick", n));
+bus.once("done", () => console.log("done event received"));
+
+let n = 0;
+const id = setInterval(() => {
+  bus.emit("tick", ++n);
+  if (n === 5) {
+    clearInterval(id);
+    bus.emit("done");
+  }
+}, 500);

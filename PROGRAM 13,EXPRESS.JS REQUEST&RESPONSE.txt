@@ -1,0 +1,28 @@
+# express-req-res/server.js
+# npm i express
+const express = require("express");
+const app = express();
+app.use(express.json());
+
+// Middleware to log and set a custom header
+app.use((req, res, next) => {
+  console.log(req.method, req.url);
+  res.set("X-Powered-By", "Express");
+  next();
+});
+
+// GET: show info from request and send JSON response
+app.get("/info", (req, res) => {
+  res.status(200).json({
+    method: req.method,
+    path: req.path,
+    userAgent: req.headers["user-agent"],
+  });
+});
+
+// POST: echo body back
+app.post("/mirror", (req, res) => {
+  res.status(201).json({ youSent: req.body });
+});
+
+app.listen(3002, () => console.log("Req/Res: http://localhost:3002 (GET /info, POST /mirror)"));

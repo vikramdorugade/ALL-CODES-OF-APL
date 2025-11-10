@@ -1,0 +1,27 @@
+# src/App.js
+// Demonstrates both class and function components and prop passing.
+import React from "react";
+
+function Badge({ label }) {
+  return (
+    <span style={{ padding: "4px 8px", border: "1px solid #ccc", borderRadius: 8 }}>
+      {label}
+    </span>
+  );
+}
+
+class Greeter extends React.Component {
+  // Classic class component with props
+  render() {
+    return <h3>Welcome, {this.props.name}</h3>;
+  }
+}
+
+export default function App() {
+  return (
+    <div style={{ fontFamily: "system-ui" }}>
+      <Greeter name="Student" />
+      <Badge label="Function Component" />
+    </div>
+  );
+}

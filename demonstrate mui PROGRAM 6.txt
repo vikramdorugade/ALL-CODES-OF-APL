@@ -1,0 +1,29 @@
+# Install once in the CRA app:
+# npm i @mui/material @emotion/react @emotion/styled
+
+# src/App.js
+// Simple Material-UI demo with Button, Card, TextField
+import React, { useState } from "react";
+import { Button, Card, CardContent, TextField, Typography } from "@mui/material";
+
+export default function App() {
+  const [name, setName] = useState("");
+
+  return (
+    <Card sx={{ maxWidth: 400, m: 2, p: 1 }}>
+      <CardContent>
+        <Typography variant="h5" gutterBottom>MUI Demo</Typography>
+        <TextField
+          margin="normal"
+          label="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          fullWidth
+        />
+        <Button variant="contained" onClick={() => alert(`Hi ${name || "there"}!`)}>
+          Say Hi
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}

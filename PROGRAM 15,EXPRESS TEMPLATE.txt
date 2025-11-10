@@ -1,0 +1,39 @@
+# express-template/
+# npm i express ejs
+# server.js
+const path = require("path");
+const express = require("express");
+const app = express();
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public"))); // to serve CSS
+
+app.get("/", (req, res) => {
+  // Pass data into the template
+  res.render("home", { title: "EJS Template Demo", items: ["One", "Two", "Three"] });
+});
+
+app.listen(3004, () => console.log("EJS: http://localhost:3004"));
+
+# views/home.ejs
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <ul>
+      <% items.forEach(it => { %>
+        <li><%= it %></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
+
+# public/style.css
+body{font-family:system-ui;margin:2rem}
+h1{border-bottom:2px solid #ccc;padding-bottom:.5rem}

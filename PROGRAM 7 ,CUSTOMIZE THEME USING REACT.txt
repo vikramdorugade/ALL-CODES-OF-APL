@@ -1,0 +1,29 @@
+# src/App.js
+// Dark/Light mode toggle using MUI ThemeProvider
+import React from "react";
+import { createTheme, ThemeProvider, CssBaseline, Button, Typography } from "@mui/material";
+
+export default function App() {
+  const [mode, setMode] = React.useState("light");
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: { mode, primary: { main: mode === "light" ? "#1976d2" : "#90caf9" } },
+        shape: { borderRadius: 16 },
+      }),
+    [mode]
+  );
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div style={{ padding: 24 }}>
+        <Typography variant="h4" gutterBottom>Theme: {mode}</Typography>
+        <Button variant="contained" onClick={() => setMode((m) => (m === "light" ? "dark" : "light"))}>
+          Toggle Theme
+        </Button>
+      </div>
+    </ThemeProvider>
+  );
+}

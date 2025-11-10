@@ -1,0 +1,27 @@
+# src/App.js
+import React from "react";
+import "./App.css"; // external stylesheet
+
+class Profile extends React.Component {
+  render() {
+    const { name, role } = this.props;
+    return (
+      <div className="card">
+        <img className="avatar" src="https://picsum.photos/80" alt="avatar" />
+        <div>
+          <h3>{name}</h3>
+          <p>{role}</p>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default function App() {
+  return <Profile name="React Learner" role="Class Component with CSS" />;
+}
+
+# src/App.css
+/* Separate CSS file to style the class-based component */
+.card{display:flex;gap:1rem;align-items:center;border:1px solid #ddd;padding:1rem;border-radius:14px;max-width:340px}
+.avatar{border-radius:50%}

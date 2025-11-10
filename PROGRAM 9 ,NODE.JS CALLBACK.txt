@@ -1,0 +1,14 @@
+# callbacks/index.js
+// Demonstrates callback style with fs APIs and nested callbacks
+const fs = require("fs");
+
+fs.writeFile("data.txt", "hello\n", (err) => {
+  if (err) return console.error(err);
+  fs.appendFile("data.txt", "world\n", (err2) => {
+    if (err2) return console.error(err2);
+    fs.readFile("data.txt", "utf8", (err3, txt) => {
+      if (err3) return console.error(err3);
+      console.log("FILE CONTENT:\n" + txt);
+    });
+  });
+});
